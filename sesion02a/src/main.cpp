@@ -5,12 +5,9 @@
 void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
-void funKeyboard(unsigned char key, int x, int y);
-void funIdle();
 void destroyFunc();
 
 // Variables globales
-bool dibujar = true;
 
 int main(int argc, char** argv) {
     
@@ -19,7 +16,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(500,500);
     glutInitWindowPosition(50,50);
-    glutCreateWindow("Sesion 1");
+    glutCreateWindow("Sesion 2a");
     
  // Inicializamos GLEW
     GLenum err = glewInit();
@@ -34,8 +31,6 @@ int main(int argc, char** argv) {
  // Configuración CallBacks
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
-    glutKeyboardFunc(funKeyboard);
-    glutIdleFunc(funIdle);
     
  // Bucle principal
     glutMainLoop();
@@ -68,47 +63,10 @@ void funDisplay() {
     glClear(GL_COLOR_BUFFER_BIT);
     
  // Dibujamos una tetera con modelo de alambre
-    //glColor3f(1.0f, 1.0f, 0.0f);
+    glColor3f(1.0f, 1.0f, 0.0f);
     glutWireTeapot(1.0f);
     
  // Intercambiamos los buffers
     glutSwapBuffers();
-    
-}
-
-void funKeyboard(unsigned char key, int x, int y) {
-   
-    switch(key) {
-        case 'r':
-            glColor3f(1.0f, 0.0f, 0.0f); 
-            break;
-        case 'g':
-            glColor3f(0.0f, 1.0f, 0.0f);
-            break;
-        case 'b':
-            glColor3f(0.0f, 0.0f, 1.0f);
-            break;
-        default:
-            glColor3f(1.0f, 1.0f, 1.0f); 
-    }
-    
-    glutPostRedisplay();
-        
-}
-
-void funIdle() {
-    
-    if(dibujar) {
-        glColor3f(1.0f, 1.0f, 1.0f);
-        dibujar = false;
-    }
-    else {
-        glColor3f(0.0f, 0.0f, 0.0f);
-        dibujar = true;  
-    }
-    
-    Sleep(500);
-    
-    glutPostRedisplay();
     
 }
