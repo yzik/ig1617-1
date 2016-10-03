@@ -5,6 +5,7 @@
 void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
+void funKeyboard(unsigned char key, int x, int y);
 void destroyFunc();
 
 int main(int argc, char** argv) {
@@ -18,10 +19,10 @@ int main(int argc, char** argv) {
     
  // Inicializamos GLEW
     GLenum err = glewInit();
-    if(GLEW_OK != err) {
-        printf("Error: %s\n", glewGetErrorString(err));
-    }
+    if(GLEW_OK != err) printf("Error: %s\n", glewGetErrorString(err));
     printf("Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
+    const GLubyte *oglVersion = glGetString(GL_VERSION);
+    printf("This system supports OpenGL Version: %s\n", oglVersion);
     
  // Inicializaciones específicas
     initFunc();
@@ -29,7 +30,8 @@ int main(int argc, char** argv) {
  // Configuración CallBacks
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
-    
+    glutKeyboardFunc(funKeyboard);
+            
  // Bucle principal
     glutMainLoop();
     
@@ -50,19 +52,41 @@ void destroyFunc() {
 
 void funReshape(int w, int h) {
     
+    printf("Dimensiones %dx%d pixeles\n", w, h);
+    
 }
 
 void funDisplay() {
     
  // Borramos el buffer de color
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
  // Dibujamos una tetera con modelo de alambre
-    glColor3f(1.0, 1.0, 0.0);
-    glutWireTeapot(1.0);
+    //glColor3f(1.0f, 1.0f, 0.0f);
+    glutWireTeapot(1.0f);
     
  // Intercambiamos los buffers
     glutSwapBuffers();
     
+}
+
+void funKeyboard(unsigned char key, int x, int y) {
+   
+    switch(key) {
+        case 'r':
+            glColor3f(1.0f, 0.0f, 0.0f); 
+            break;
+        case 'g':
+            glColor3f(0.0f, 1.0f, 0.0f);
+            break;
+        case 'b':
+            glColor3f(0.0f, 0.0f, 1.0f);
+            break;
+        default:
+            glColor3f(1.0f, 1.0f, 1.0f); 
+    }
+    
+    glutPostRedisplay();
+        
 }
