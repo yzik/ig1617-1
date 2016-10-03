@@ -6,7 +6,11 @@ void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
 void funKeyboard(unsigned char key, int x, int y);
+void funIdle();
 void destroyFunc();
+
+// Variables globales
+bool dibujar = true;
 
 int main(int argc, char** argv) {
     
@@ -31,7 +35,8 @@ int main(int argc, char** argv) {
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
     glutKeyboardFunc(funKeyboard);
-            
+    glutIdleFunc(funIdle);
+    
  // Bucle principal
     glutMainLoop();
     
@@ -89,4 +94,21 @@ void funKeyboard(unsigned char key, int x, int y) {
     
     glutPostRedisplay();
         
+}
+
+void funIdle() {
+    
+    if(dibujar) {
+        glColor3f(1.0f, 1.0f, 1.0f);
+        dibujar = false;
+    }
+    else {
+        glColor3f(0.0f, 0.0f, 0.0f);
+        dibujar = true;  
+    }
+    
+    Sleep(500);
+    
+    glutPostRedisplay();
+    
 }
