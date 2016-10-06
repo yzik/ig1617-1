@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     
  // Inicializamos GLUT
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(w,h);
     glutInitWindowPosition(50,50);
     glutCreateWindow("Sesion 2a");
@@ -49,6 +49,7 @@ int main(int argc, char** argv) {
 void initFunc() {
     
  // Configuracion de etapas del cauce
+    glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_FLAT);
     
 }
@@ -72,7 +73,7 @@ void funDisplay() {
     
  // Borramos el buffer de color
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
  // Para configurar la matriz matriz P
     glMatrixMode(GL_PROJECTION);
