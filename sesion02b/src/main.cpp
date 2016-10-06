@@ -6,11 +6,14 @@ void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
 void drawTriangulo(char color);
+void funKeyboard(int key, int x, int y);
 void destroyFunc();
 
 // Variables globales
 int w = 500;
 int h = 500;
+GLfloat desZ = -5.0f;
+GLfloat rotY =  0.0f;
 
 int main(int argc, char** argv) {
     
@@ -34,7 +37,8 @@ int main(int argc, char** argv) {
  // Configuración CallBacks
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
-    
+    glutSpecialFunc(funKeyboard);
+      
  // Bucle principal
     glutMainLoop();
     
@@ -91,7 +95,7 @@ void funDisplay() {
     // Aquí cargaremos la matriz V
     
  // Dibujamos los objetos (M)
-    glTranslatef(0.0f, 0.0f, -5.0f);
+    glTranslatef(0.0f, 0.0f, desZ);
     drawTriangulo('g');
     
  // Intercambiamos los buffers
@@ -120,5 +124,29 @@ void drawTriangulo(char color) {
         glVertex3f( 0.5f, -0.5f, 0.0f); // v2
         glVertex3f( 0.0f,  0.5f, 0.0f); // v3
     glEnd();
+    
+}
+
+void funKeyboard(int key, int x, int y) {
+
+    switch(key) {
+        case GLUT_KEY_UP:
+            desZ -= 0.1f;
+            break;
+        case GLUT_KEY_DOWN:
+            desZ += 0.1f;
+            break;
+        case GLUT_KEY_RIGHT:
+            rotY -= 5.0f;
+            break;
+        case GLUT_KEY_LEFT:
+            rotY += 5.0f;
+            break;
+        default:
+            desZ = -5.0f;  
+            rotY =  0.0f;
+    }
+    
+    glutPostRedisplay();
     
 }
