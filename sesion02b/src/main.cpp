@@ -96,8 +96,13 @@ void funDisplay() {
     
  // Dibujamos los objetos (M)
     glTranslatef(0.0f, 0.0f, desZ);
+    
+    glTranslatef(-1.0f, 0.0f, 0.0f);
     glRotatef(rotY, 0.0f, 1.0f, 0.0f);
     drawTriangulo('g');
+    
+    glTranslatef( 1.0f, 0.0f, 0.0f);
+    drawTriangulo('r');
     
  // Intercambiamos los buffers
     glutSwapBuffers();
