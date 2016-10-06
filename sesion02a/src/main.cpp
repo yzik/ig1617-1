@@ -62,9 +62,17 @@ void funDisplay() {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
- // Dibujamos una tetera con modelo de alambre
-    glColor3f(1.0f, 1.0f, 0.0f);
-    glutWireTeapot(1.0f);
+ // Dibujamos un triángulo
+    glBegin(GL_TRIANGLES);
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+
+        glColor3f(0.0f, 1.0f, 0.0f);
+        glVertex3f( 0.5, -0.5, -2.0f);
+
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f( 0.0f,  0.5f, -2.0f);
+    glEnd();
     
  // Intercambiamos los buffers
     glutSwapBuffers();
