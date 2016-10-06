@@ -97,12 +97,12 @@ void funDisplay() {
  // Dibujamos los objetos (M)
     glTranslatef(0.0f, 0.0f, desZ);
     
-    glTranslatef(-1.0f, 0.0f, 0.0f);
-    glRotatef(rotY, 0.0f, 1.0f, 0.0f);
-    drawTriangulo('g');
-    
-    glLoadIdentity();
-    glTranslatef(0.0f, 0.0f, desZ);
+    glPushMatrix(); 
+        glTranslatef(-1.0f, 0.0f, 0.0f);
+        glRotatef(rotY, 0.0f, 1.0f, 0.0f);
+        drawTriangulo('g');
+    glPopMatrix();
+
     glTranslatef( 1.0f, 0.0f, 0.0f);
     drawTriangulo('r');
     
