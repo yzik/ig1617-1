@@ -5,7 +5,7 @@
 void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
-void drawTriangulo();
+void drawTriangulo(char color);
 void destroyFunc();
 
 // Variables globales
@@ -83,25 +83,34 @@ void funDisplay() {
     GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
       
- // Dibujamos un triángulo
-    drawTriangulo();
+ // Dibujamos un triángulo verde
+    drawTriangulo('g');
     
  // Intercambiamos los buffers
     glutSwapBuffers();
     
 }
 
-void drawTriangulo() {
+void drawTriangulo(char color) {
+    
+    switch(color) {
+        case 'r':
+            glColor3f(1.0f, 0.0f, 0.0f);
+            break;
+        case 'g':
+            glColor3f(0.0f, 1.0f, 0.0f);
+            break;
+        case 'b':
+            glColor3f(0.0f, 0.0f, 1.0f);
+            break;
+        default:
+            glColor3f(1.0f, 1.0f, 1.0f);            
+    }
     
     glBegin(GL_TRIANGLES);
-        glColor3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(-0.5f, -0.5f, -2.0f);
-
-        glColor3f(0.0f, 1.0f, 0.0f);
-        glVertex3f( 0.5, -0.5, -2.0f);
-
-        glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f( 0.0f,  0.5f, -2.0f);
+        glVertex3f(-0.5f, -0.5f, 0.0f); // v1
+        glVertex3f( 0.5f, -0.5f, 0.0f); // v2
+        glVertex3f( 0.0f,  0.5f, 0.0f); // v3
     glEnd();
     
 }
