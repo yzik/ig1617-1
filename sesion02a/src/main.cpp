@@ -6,6 +6,7 @@ void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
 void drawTriangulo();
+void drawPuntos();
 void destroyFunc();
 
 // Variables globales
@@ -81,10 +82,12 @@ void funDisplay() {
     GLfloat aspectRatio = (GLfloat)w/(GLfloat)h;    
     GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
-    
-    
+      
  // Dibujamos un triángulo
     drawTriangulo();
+    
+ // Dibujamos dos puntos
+    drawPuntos();
     
  // Intercambiamos los buffers
     glutSwapBuffers();
@@ -104,4 +107,15 @@ void drawTriangulo() {
         glVertex3f( 0.0f,  0.5f, -2.0f);
     glEnd();
     
+}
+
+void drawPuntos() {
+
+    glPointSize(10);
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glBegin(GL_POINTS);
+        glVertex3f( 0.0f, 0.0f, -3.0f);
+        glVertex3f( 0.5f, 0.5f, -3.0f);
+    glEnd();
+
 }
