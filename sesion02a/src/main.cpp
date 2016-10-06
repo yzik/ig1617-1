@@ -8,13 +8,15 @@ void funDisplay();
 void destroyFunc();
 
 // Variables globales
+int w = 500;
+int h = 500;
 
 int main(int argc, char** argv) {
     
  // Inicializamos GLUT
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(500,500);
+    glutInitWindowSize(w,h);
     glutInitWindowPosition(50,50);
     glutCreateWindow("Sesion 2a");
     
@@ -61,6 +63,16 @@ void funDisplay() {
  // Borramos el buffer de color
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+    
+ // Para configurar la matriz matriz P
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    
+ // Matriz de Proyección P (Cámara)
+    GLfloat aspectRatio = (GLfloat)w/(GLfloat)h;    
+    GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
+    gluPerspective(fovy,aspectRatio,nplane,fplane);
+    
     
  // Dibujamos un triángulo
     glBegin(GL_TRIANGLES);
