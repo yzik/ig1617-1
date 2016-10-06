@@ -95,8 +95,8 @@ void funDisplay() {
     // Aquí cargaremos la matriz V
     
  // Dibujamos los objetos (M)
-    glRotatef(rotY, 0.0f, 1.0f, 0.0f);
     glTranslatef(0.0f, 0.0f, desZ);
+    glRotatef(rotY, 0.0f, 1.0f, 0.0f);
     drawTriangulo('g');
     
  // Intercambiamos los buffers
