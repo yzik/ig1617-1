@@ -51,9 +51,8 @@ int main(int argc, char** argv) {
 
 void initFunc() {
     
- // Configuracion de etapas del cauce
+ // Test de profundidad
     glEnable(GL_DEPTH_TEST);
-    glShadeModel(GL_FLAT);
     
  // Culling de las caras
     glFrontFace(GL_CCW);
@@ -114,8 +113,12 @@ void funDisplay() {
     glColor3f(1.0, 1.0, 1.0);
     glutWireCube(2.0);
     
-    glScalef(1.5f,1.5f,1.5f);
-    drawTriangulo('r');
+    glPushMatrix();
+        glScalef(1.5f,1.5f,1.5f);
+        drawTriangulo('r');
+    glPopMatrix();
+    
+    drawTriangulo('g');
     
  // Intercambiamos los buffers
     glutSwapBuffers();
