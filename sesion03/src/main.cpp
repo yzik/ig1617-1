@@ -82,9 +82,9 @@ void funDisplay() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
- // Matriz de Proyección P (Cámara): Perspectiva (glFrustum)
-    GLfloat left = -2.0, right = 2.0, bottom = -2.0, top = 2.0, nplane = 2.0, fplane = 10.0;
-    glFrustum(left,right,bottom,top,nplane,fplane); 
+ // Matriz de Proyección P (Cámara): Perspectiva (gluPerspective)
+    GLfloat fovy = 50.0f, aspectRatio = (GLfloat)w/(GLfloat)h, nplane = 0.1f, fplane = 20.0f;
+    gluPerspective(fovy,aspectRatio,nplane,fplane);
       
  // Para configurar las matrices M y V
     glMatrixMode(GL_MODELVIEW);  
