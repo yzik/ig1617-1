@@ -53,7 +53,8 @@ void initFunc() {
     
  // Test de profundidad
     glEnable(GL_DEPTH_TEST);
-    
+    glPolygonOffset(1.0,1.0);
+        
  // Culling de las caras
     glFrontFace(GL_CCW);
     //glEnable(GL_CULL_FACE);
@@ -113,10 +114,12 @@ void funDisplay() {
     glColor3f(1.0, 1.0, 1.0);
     glutWireCube(2.0);
     
+    glEnable(GL_POLYGON_OFFSET_FILL);
     glPushMatrix();
         glScalef(1.5f,1.5f,1.5f);
         drawTriangulo('r');
     glPopMatrix();
+    glDisable(GL_POLYGON_OFFSET_FILL);
     
     drawTriangulo('g');
     
