@@ -57,8 +57,12 @@ void initFunc() {
     
  // Culling de las caras
     glFrontFace(GL_CCW);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+    //glEnable(GL_CULL_FACE);
+    //glCullFace(GL_BACK);
+    
+ // Modo de rasterizado de las caras
+    glPolygonMode(GL_FRONT,GL_FILL);
+    glPolygonMode(GL_BACK,GL_LINE);
     
 }
 
