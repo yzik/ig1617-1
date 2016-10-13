@@ -91,7 +91,12 @@ void funDisplay() {
     glLoadIdentity();
     
  // Matriz de Vista V (Cámara)
-    // Aquí cargaremos la matriz V
+    GLfloat eye[3]    = {0.0,  2.0,  0.0};
+    GLfloat center[3] = {0.0,  0.0, -5.0};
+    GLfloat up[3]     = {0.0,  1.0,  0.0};
+    gluLookAt(    eye[0],    eye[1],    eye[2],
+               center[0], center[1], center[2],
+                   up[0],     up[1],     up[2]);
     
  // Dibujamos los objetos (M)
     glTranslatef(0.0f, 0.0f, desZ);
