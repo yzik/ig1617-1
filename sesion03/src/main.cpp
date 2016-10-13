@@ -55,6 +55,11 @@ void initFunc() {
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_FLAT);
     
+ // Culling de las caras
+    glFrontFace(GL_CCW);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    
 }
 
 void destroyFunc() {
@@ -105,6 +110,8 @@ void funDisplay() {
     glColor3f(1.0, 1.0, 1.0);
     glutWireCube(2.0);
     
+    glScalef(1.5f,1.5f,1.5f);
+    drawTriangulo('r');
     
  // Intercambiamos los buffers
     glutSwapBuffers();
